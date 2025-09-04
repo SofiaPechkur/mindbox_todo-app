@@ -1,0 +1,90 @@
+section {
+  background-color: white;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.input-task {
+  border-bottom: 2px solid rgb(218, 209, 209);
+}
+.input-task button {
+  position: relative;
+  flex: 0 0 35px;
+  
+}
+.input-task button::before {
+  position: absolute;
+  content: '';
+  top: 30%;
+  left: 15px;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid rgb(218, 209, 209);
+  border-bottom: 2px solid rgb(218, 209, 209);
+  transform: rotate(45deg) translateY(-50%);
+}
+.todo-list input {
+  width: 100%;
+  padding: 20px 20px 20px 5px;
+
+}
+input::placeholder {
+  font-size: 1rem;
+}
+li {
+  position: relative;
+  padding: 10px 40px;
+  border-bottom: 1px solid rgb(218, 209, 209);
+}
+li::before {
+  position: absolute;
+  content: '';
+  top: 20%;
+  left: 15px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid rgb(218, 209, 209);
+  background-color: rgb(255, 255, 255);
+}
+.completed {
+  position: relative;
+  text-decoration: line-through;
+}
+.completed::after {
+  position: absolute;
+  content: '';
+  top: 40%;
+  left: 17px;
+  width: 0.4rem;
+  height: 0.3rem;
+  border-right: 2px solid rgb(5, 104, 0);
+  border-bottom: 2px solid rgb(5, 104, 0);
+  transform: rotate(45deg) translateY(-50%);
+}
+.todo-list-footer {
+  width: 100%;
+  padding: 10px 20px;
+}
+.todo-list-footer > *:nth-child(1) {
+  flex: 0 0 25%;
+  text-align: left;
+}
+.todo-list-footer > *:nth-child(2) {
+  flex: 0 0 50%;
+  justify-content: space-around;
+}
+.todo-list-footer > *:nth-child(3) {
+  flex: 0 0 25%;
+  text-align: right;
+}
+.active {
+  border: 1px solid black;
+  border-radius: 10%;
+}
+button {
+  border: none;
+  background-color: white;
+  padding: 10px;
+}
