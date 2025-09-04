@@ -3,7 +3,13 @@ import './Tasks.css'
 
 const Tasks = () => {
   const [inputValue, setInputValue] = useState('');
-  const [tasks, setTasks] = useState([]) // {id: Date.now(), text: "New task", completed: false}
+  // {id: Date.now(), text: "New task", completed: false}
+  const [tasks, setTasks] = useState([])
+  const [activeFilter, setActiveFilter] = useState([
+    {nameFilter: 'All', selected: true},
+    {nameFilter: 'Active', selected: false},
+    {nameFilter: 'Completed', selected: false}
+  ])
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -13,13 +19,34 @@ const Tasks = () => {
     e.preventDefault();
     if (!inputValue.trim()) return;
     const newTask = {id: Date.now(), text: inputValue, completed: false};
-    setTasks([...tasks, newTask]);
+    setTasks([newTask, ...tasks]);
     setInputValue('');
   };
 
-  const handleClick = (id) => {
+  const handleClickTask = (id) => {
     setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task))
   }
+
+  const handleClickFilter = (nameFilter) => {
+    setActiveFilter(activeFilter
+      .map(filter => filter.nameFilter === nameFilter
+      ?
+      { ...filter, selected: true}
+      :
+      { ...filter, selected: false}
+      ))
+  }
+
+  const handleClickClear = () => {
+    setTasks(tasks.filter(task => !task.completed))
+  }
+
+  const selectedFilter = activeFilter.find(filter => filter.selected).nameFilter;
+  const filteredTasks = tasks.filter(task => {
+  if (selectedFilter === "Active") return !task.completed;
+  if (selectedFilter === "Completed") return task.completed;
+  return true;
+});
 
   return (
     <>
@@ -38,12 +65,12 @@ const Tasks = () => {
             name='task'/>
           </div>
           <ul>
-            {tasks.map((task) => {
+            {filteredTasks.map((task) => {
               return (
                 <li
                 className={task.completed ? 'completed' : ''}
                 key={task.id}
-                onClick={() => handleClick(task.id)}
+                onClick={() => handleClickTask(task.id)}
                 style={{ cursor: "pointer" }}>
                   {task.text}
                 </li>
@@ -53,15 +80,22 @@ const Tasks = () => {
         </form>
         <div className="todo-list-footer flex">
           <div>
-            <span>items left</span>
+            <span>{tasks.filter(task => !task.completed).length} items left</span>
           </div>
           <div className="filters flex">
-            <button className='active'>All</button>
-            <button>Active</button>
-            <button>Completed</button>
+            {activeFilter.map(filter => (
+              <button
+                key={filter.nameFilter}
+                style={{ cursor: "pointer" }}
+                className={filter.selected ? "active" : ""}
+                onClick={() => handleClickFilter(filter.nameFilter)}
+              >
+                {filter.nameFilter}
+              </button>
+            ))}
           </div>
           <div>
-            <button>Clear completed</button>
+            <button onClick={handleClickClear}>Clear completed</button>
           </div>
         </div>
       </section>
