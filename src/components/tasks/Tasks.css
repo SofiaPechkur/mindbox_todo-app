@@ -1,5 +1,8 @@
 section {
   background-color: white;
+  border: 1px solid darkred;
+  box-shadow: 0 4px 8px rgba(139, 0, 0, 0.2);
+  border-radius: 10px;
 }
 .flex {
   display: flex;
@@ -31,6 +34,8 @@ section {
 }
 input::placeholder {
   font-size: 1rem;
+  font-style: italic;
+  color: rgb(218, 209, 209);
 }
 li {
   position: relative;
@@ -51,6 +56,7 @@ li::before {
 .completed {
   position: relative;
   text-decoration: line-through;
+  color: rgb(218, 209, 209);
 }
 .completed::after {
   position: absolute;
@@ -80,11 +86,18 @@ li::before {
   text-align: right;
 }
 .active {
-  border: 1px solid black;
-  border-radius: 10%;
+  border: 1px solid darkred;
+  border-radius: 10px;
 }
 button {
   border: none;
   background-color: white;
   padding: 10px;
+}
+button:hover {
+  background-color: #f0f0f0;
+  border: 1px solid rgba(139, 0, 0, 0.7);
+  border-radius: 10px;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(139, 0, 0, 0.7);
 }

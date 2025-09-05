@@ -1,10 +1,16 @@
 import { useState } from 'react'
 import './Tasks.css'
 
+const defaultTasks = [
+  {id: 1, text: "Купить продукты", completed: false},
+  {id: 2, text: "Погладить кота", completed: false},
+  {id: 3, text: "Позвонить в ЖКХ", completed: false}
+]
+
 const Tasks = () => {
   const [inputValue, setInputValue] = useState('');
   // {id: Date.now(), text: "New task", completed: false}
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([...defaultTasks])
   const [activeFilter, setActiveFilter] = useState([
     {nameFilter: 'All', selected: true},
     {nameFilter: 'Active', selected: false},

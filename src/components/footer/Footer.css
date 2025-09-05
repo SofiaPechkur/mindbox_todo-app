@@ -1,4 +1,9 @@
 footer p {
   text-align: right;
   padding: 10px;
+  background: linear-gradient(90deg, orange, darkred);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
