@@ -56,7 +56,7 @@ img, picture, video, canvas, svg {
     padding: 0 200px;
   }
 }
-@media (min-width: 1441px) and (min-width: 1441px) {
+@media (min-width: 1441px) {
   #root {
     padding: 0 500px;
   }
