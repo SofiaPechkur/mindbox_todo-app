@@ -7,7 +7,7 @@ App available on [Netlify](https://shimmering-toffee-561834.netlify.app/)
 ### Clone repository
 
 ```bash
-git clone https://github.com/SofiaPechkur/todo-app.git
+git clone https://github.com/SofiaPechkur/ToDo_App.git
 ```
 
 ### Setup
