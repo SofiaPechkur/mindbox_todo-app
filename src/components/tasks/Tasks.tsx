@@ -1,27 +1,38 @@
-import { useState } from 'react'
+import { useState, FC } from 'react'
 import './Tasks.css'
 
-const defaultTasks = [
+type Task = {
+  id: number,
+  text: string,
+  completed: boolean,
+}
+
+type Filter = {
+  nameFilter: 'All' | 'Active' | 'Completed';
+  selected: boolean;
+}
+
+const defaultTasks: Task[] = [
   {id: 1, text: "Купить продукты", completed: false},
   {id: 2, text: "Погладить кота", completed: false},
   {id: 3, text: "Позвонить в ЖКХ", completed: false}
 ]
 
-const Tasks = () => {
-  const [inputValue, setInputValue] = useState('');
+const Tasks: FC = () => {
+  const [inputValue, setInputValue] = useState<string>('');
   // {id: Date.now(), text: "New task", completed: false}
-  const [tasks, setTasks] = useState([...defaultTasks])
-  const [activeFilter, setActiveFilter] = useState([
+  const [tasks, setTasks] = useState<Task[]>([...defaultTasks])
+  const [activeFilter, setActiveFilter] = useState<Filter[]>([
     {nameFilter: 'All', selected: true},
     {nameFilter: 'Active', selected: false},
     {nameFilter: 'Completed', selected: false}
   ])
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
     const newTask = {id: Date.now(), text: inputValue, completed: false};
@@ -29,11 +40,11 @@ const Tasks = () => {
     setInputValue('');
   };
 
-  const handleClickTask = (id) => {
+  const handleClickTask = (id: number) => {
     setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task))
   }
 
-  const handleClickFilter = (nameFilter) => {
+  const handleClickFilter = (nameFilter: string) => {
     setActiveFilter(activeFilter
       .map(filter => filter.nameFilter === nameFilter
       ?
@@ -47,7 +58,7 @@ const Tasks = () => {
     setTasks(tasks.filter(task => !task.completed))
   }
 
-  const selectedFilter = activeFilter.find(filter => filter.selected).nameFilter;
+  const selectedFilter: Filter['nameFilter'] = activeFilter.find(filter => filter.selected)?.nameFilter ?? 'All';
   const filteredTasks = tasks.filter(task => {
   if (selectedFilter === "Active") return !task.completed;
   if (selectedFilter === "Completed") return task.completed;

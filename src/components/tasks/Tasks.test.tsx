@@ -8,7 +8,7 @@ test('create task', () => { // Создание задачи
 
   const input = screen.getByPlaceholderText(/what needs to be done/i);
   fireEvent.change(input, { target: { value: 'Новая задача' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   expect(screen.getByText('Новая задача')).toBeInTheDocument();
 });
@@ -18,7 +18,7 @@ test('mark as completed', () => { // Отметка как выполненно�
 
   const input = screen.getByPlaceholderText(/what needs to be done/i);
   fireEvent.change(input, { target: { value: 'Задача' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   const task = screen.getByText('Задача');
   fireEvent.click(task);
@@ -31,7 +31,7 @@ test('mark as nocompleted', () => { // Снятие отметки выполн�
 
   const input = screen.getByPlaceholderText(/what needs to be done/i);
   fireEvent.change(input, { target: { value: 'Задача' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   const task = screen.getByText('Задача');
   fireEvent.click(task);
@@ -45,10 +45,10 @@ test('filter active task', () => { // Фильтрация по активным
 
   const input = screen.getByPlaceholderText(/what needs to be done/i);
   fireEvent.change(input, { target: { value: 'Задача 1' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   fireEvent.change(input, { target: { value: 'Задача 2' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   const task1 = screen.getByText('Задача 1');
   fireEvent.click(task1);
@@ -64,10 +64,10 @@ test('filter completed task', () => { // Фильтрация по заверш�
 
   const input = screen.getByPlaceholderText(/what needs to be done/i);
   fireEvent.change(input, { target: { value: 'Задача 1' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   fireEvent.change(input, { target: { value: 'Задача 2' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   const task1 = screen.getByText('Задача 1');
   fireEvent.click(task1);
@@ -83,10 +83,10 @@ test('clear completed', () => { // Очистка завершённых
 
   const input = screen.getByPlaceholderText(/what needs to be done/i);
   fireEvent.change(input, { target: { value: 'Задача 1' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   fireEvent.change(input, { target: { value: 'Задача 2' } });
-  fireEvent.submit(input.closest('form'));
+  fireEvent.submit(input.closest('form')!);
 
   const task1 = screen.getByText('Задача 1');
   fireEvent.click(task1);

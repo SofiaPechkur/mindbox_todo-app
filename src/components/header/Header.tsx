@@ -1,6 +1,7 @@
+import { FC } from "react";
 import './Header.css'
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <>
         <header>

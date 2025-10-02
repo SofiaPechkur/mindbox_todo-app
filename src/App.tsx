@@ -1,8 +1,9 @@
+import { FC } from "react";
 import Header from './components/header/Header'
 import Tasks from './components/tasks/Tasks'
 import Footer from './components/footer/Footer'
 
-function App() {
+const App: FC = () => {
   return (
     <>
       <Header />

@@ -1,6 +1,6 @@
 # ToDo app
 
-Created on React and Vite.
+Created on React, TypeScript and Vite.
 
 App available on [Netlify](https://shimmering-toffee-561834.netlify.app/)
 
